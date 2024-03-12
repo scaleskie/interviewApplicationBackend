@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Table",
+    "image": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "description": "This is a table."
+  },
+  {
+    "id": 2,
+    "title": "Chair",
+    "image": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "description": "This is a chair."
+  },
+  {
+    "id": 3,
+    "title": "Tent",
+    "image": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "description": ""
+  },
+  {
+    "id": 4,
+    "title": "Plate",
+    "image": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "description": ""
+  },
+  {
+    "id": 5,
+    "title": "Bowl",
+    "image": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "description": ""
+  }
+]
