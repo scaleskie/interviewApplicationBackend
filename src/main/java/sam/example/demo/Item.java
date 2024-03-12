@@ -2,33 +2,38 @@ package sam.example.demo;
 
 
 public class Item {
-
     private Integer id;
-    private String title;
-    private String image;
-    private String description;
+    private String code;
+    private String name;
+    private String category;
+    private String quantity;
 
-    public Item(Integer id, String title, String image, String description) {
+    public Item(Integer id, String code, String name, String category, String quantity) {
         this.id = id;
-        this.title = title;
-        this.image = image;
-        this.description = description;
+        this.code = code;
+        this.name = name;
+        this.category = category;
+        this.quantity = quantity;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getTitle() {
-        return title;
+
+    public String getCode() {
+        return code;
     }
 
-    public String getImage() {
-        return image;
+    public String getName() {
+        return name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategory() {
+        return category;
     }
 
+    public String getQuantity() {
+        return quantity;
+    }
 }
