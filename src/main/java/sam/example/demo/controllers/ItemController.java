@@ -1,34 +1,47 @@
 package sam.example.demo.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import sam.example.demo.Item;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import sam.example.demo.repositories.ItemRepository;
 
-@Controller
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/item")
 public class ItemController {
 
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return String.format("Hello %s!", name);
-    }
+    @Autowired
+    ItemRepository itemRepository;
 
-    @GetMapping("/list")
+    @GetMapping("/allItems")
     @ResponseBody
-    public Item[] viewItem() {
-        Item[] newArray = new Item[4];
-        newArray[0] = new Item(1, "CAR1", "Mazda", "Vehicle", "1");
-        newArray[1] = new Item(2, "CAR2", "Tesla", "Vehicle", "4");
-        newArray[2] = new Item(3, "CAR3", "Ford", "Vehicle", "7");
-        newArray[3] = new Item(4, "CAR4", "Jeep", "Vehicle", "3");
-
-        return newArray;
+    public List<Item> listAll() {
+        return itemRepository.findAll();
     }
 
-  /*  @PostMapping("/list/edit")
-    public Item[] updateList(@RequestBody Item item) {
-        return "Hello, "+studentName;
-    }*/
+    @GetMapping("/getItem/{id}")
+    Optional<Item> getItem(@PathVariable Integer id) {
+        return itemRepository.findById(id);
+    }
+
+    @DeleteMapping("/deleteItem/{id}")
+    void deleteItem(@PathVariable Integer id) {
+        itemRepository.deleteById(id);
+    }
+    @PostMapping("/updateItem")
+    Item updateItem(@RequestBody Item updatedItem) {
+        return itemRepository.findById(updatedItem.getId())
+                .map(item -> {
+                    item.setName("edit");
+                    item.setCode("edit");
+                    return itemRepository.save(item);
+                })
+                .orElseGet(() -> {
+                    updatedItem.setId(updatedItem.getId());
+                    return itemRepository.save(updatedItem);
+                });
+    }
+
 }
