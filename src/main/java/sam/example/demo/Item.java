@@ -56,6 +56,6 @@ public class Item {
         return quantity;
     }
     public void setQuantity(String quantity) {
-        this.category = quantity;
+        this.quantity = quantity;
     }
 }

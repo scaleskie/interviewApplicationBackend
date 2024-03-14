@@ -34,9 +34,7 @@ public class ItemController {
     Item updateItem(@RequestBody Item updatedItem) {
         return itemRepository.findById(updatedItem.getId())
                 .map(item -> {
-                    item.setName("edit");
-                    item.setCode("edit");
-                    return itemRepository.save(item);
+                    return itemRepository.save(updatedItem);
                 })
                 .orElseGet(() -> {
                     updatedItem.setId(updatedItem.getId());
